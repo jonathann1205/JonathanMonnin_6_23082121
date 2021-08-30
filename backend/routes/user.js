@@ -1,11 +1,12 @@
 //  importe  les elements
 const express = require('express');
+const rateLimit = require("../middleware/limite")
 const router = express.Router();
 
 const userCtrl = require('../controllers/user');
 
 router.post('/signup', userCtrl.signup);
-router.post('/login', userCtrl.login);
+router.post('/login',rateLimit.limiter, userCtrl.login);
 
 
 //  exporte user router
